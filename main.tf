@@ -1,44 +1,44 @@
 resource "google_compute_network" "PublicVpcNetwork" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.PublicVpcNetworkName}"
+	name = local.PublicVpcNetworkName
 	auto_create_subnetworks = "false"
 	routing_mode = "REGIONAL"
 }
 
 resource "google_compute_subnetwork" "PublicSubnet" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.PublicSubnetName}"
+	name = local.PublicSubnetName
 	ip_cidr_range = local.PublicSubnetIpRange
 	network = google_compute_network.PublicVpcNetwork.self_link
 	region = local.RegionName
 }
 
 resource "google_compute_network" "Private1VpcNetwork" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private1VpcNetworkName}"
+	name = local.Private1VpcNetworkName
 	auto_create_subnetworks = "false"
 	routing_mode = "REGIONAL"
 }
 
 resource "google_compute_subnetwork" "Private1Subnet" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private1SubnetName}"
+	name = local.Private1SubnetName
 	ip_cidr_range = local.Private1SubnetIpRange
 	network = google_compute_network.Private1VpcNetwork.self_link
 	region = local.RegionName
 }
 
 resource "google_compute_network" "Private2VpcNetwork" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private2VpcNetworkName}"
+	name = local.Private2VpcNetworkName
 	auto_create_subnetworks = "false"
 	routing_mode = "REGIONAL"
 }
 
 resource "google_compute_subnetwork" "Private2Subnet" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private2SubnetName}"
+	name = local.Private2SubnetName
 	ip_cidr_range = local.Private2SubnetIpRange
 	network = google_compute_network.Private2VpcNetwork.self_link
 	region = local.RegionName
 }
 
 resource "google_compute_firewall" "PublicFirewallRule" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.PublicFirewallRuleName}"
+	name = local.PublicFirewallRuleName
 	allow {
 		protocol = "tcp"
 		ports = local.PublicFirewallRulePorts
@@ -52,7 +52,7 @@ resource "google_compute_firewall" "PublicFirewallRule" {
 }
 
 resource "google_compute_firewall" "ConsoleFirewallRule" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.ConsoleFirewallRuleName}"
+	name = local.ConsoleFirewallRuleName
 	allow {
 		protocol = "tcp"
 		ports = local.ConsoleFirewallRulePorts
@@ -66,7 +66,7 @@ resource "google_compute_firewall" "ConsoleFirewallRule" {
 }
 
 resource "google_compute_firewall" "ControlFirewallRule" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.ControlFirewallRuleName}"
+	name = local.ControlFirewallRuleName
 	allow {
 		protocol = local.ControlFirewallRulePorts
 	}
@@ -79,7 +79,7 @@ resource "google_compute_firewall" "ControlFirewallRule" {
 }
 
 resource "google_compute_firewall" "Private1FirewallRule" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private1FirewallRuleName}"
+	name = local.Private1FirewallRuleName
 	allow {
 		protocol = local.Private1FirewallRulePorts
 	}
@@ -93,7 +93,7 @@ resource "google_compute_firewall" "Private1FirewallRule" {
 }
 
 resource "google_compute_firewall" "Private2FirewallRule" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private2FirewallRuleName}"
+	name = local.Private2FirewallRuleName
 	allow {
 		protocol = local.Private2FirewallRulePorts
 	}
@@ -104,16 +104,4 @@ resource "google_compute_firewall" "Private2FirewallRule" {
 	source_ranges = local.Private2FirewallRuleSourceIpRanges
 	source_tags = local.Private2FirewallRuleSourceTags
 	target_tags = local.Private2FirewallRuleTargetTags
-}
-
-resource "google_compute_network_peering" "Private1VpcNetworkPeer" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private1VpcNetworkPeerName}"
-	network = google_compute_network.Private1VpcNetwork.id
-	peer_network = google_compute_network.Private2VpcNetwork.id
-}
-
-resource "google_compute_network_peering" "Private2VpcNetworkPeer" {
-	name = "${local.LoginIdTag}-${local.ProjectTag}-${local.Private2VpcNetworkPeerName}"
-	network = google_compute_network.Private2VpcNetwork.id
-	peer_network = google_compute_network.Private1VpcNetwork.id
 }

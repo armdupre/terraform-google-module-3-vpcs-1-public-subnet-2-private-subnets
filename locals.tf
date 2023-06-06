@@ -63,7 +63,6 @@ locals {
 	Private1FirewallRuleTargetTags = [
 		"${local.AppName}-agent"
 	]
-	Private1VpcNetworkPeerName = "${local.Preamble}-test-01-vpc-network-peer"
 	Private2VpcNetworkName = "${local.Preamble}-test-02-vpc-network"
 	Private2FirewallRuleName = "${local.Preamble}-test-02-firewall-rule"
 	Private2FirewallRuleDirection = "INGRESS"
@@ -81,7 +80,6 @@ locals {
 	]
 	Private2SubnetName = "${local.Preamble}-test-02-subnet"
 	Private2SubnetIpRange = "10.0.3.0/24"
-	Private2VpcNetworkPeerName = "${local.Preamble}-test-02-vpc-network-peer"
 	PublicVpcNetworkName = "${local.Preamble}-management-vpc-network"
 	PublicSubnetName = "${local.Preamble}-management-subnet"
 	PublicSubnetIpRange = "10.0.10.0/24"
