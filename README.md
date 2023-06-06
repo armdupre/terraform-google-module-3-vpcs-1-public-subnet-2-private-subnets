@@ -1,1 +1,1 @@
-# terraform-google-module-3-vpcs-1-public-subnet-2-private-subnets
+# module-3-vpcs-1-public-subnet-2-private-subnets/google
