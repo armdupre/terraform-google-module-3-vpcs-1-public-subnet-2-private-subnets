@@ -8,6 +8,7 @@ output "Private1Subnet" {
 output "Private1VpcNetwork" {
 	value = {
 		"name" : google_compute_network.Private1VpcNetwork.name
+		"id" : google_compute_network.Private1VpcNetwork.id
 		"self_link" : google_compute_network.Private1VpcNetwork.self_link
 	}
 }
@@ -22,6 +23,7 @@ output "Private2Subnet" {
 output "Private2VpcNetwork" {
 	value = {
 		"name" : google_compute_network.Private2VpcNetwork.name
+		"id" : google_compute_network.Private2VpcNetwork.id
 		"self_link" : google_compute_network.Private2VpcNetwork.self_link
 	}
 }
