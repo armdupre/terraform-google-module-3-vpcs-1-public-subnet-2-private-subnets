@@ -1,5 +1,16 @@
 locals {
-	AppName = "ixnetwork"
+	ComputeFirewallRuleName = "${local.Preamble}-compute-firewall-rule"
+	ComputeFirewallRuleDirection = "INGRESS"
+	ComputeFirewallRulePriority = "1002"
+	ComputeFirewallRulePorts = [
+		"7443"
+	]
+	ComputeFirewallRuleNetworkTargetTags = [
+		"cyperf-license"
+	]
+	ComputeFirewallRuleSourceIpRanges = [
+		"0.0.0.0/0"
+	]
 	ConsoleFirewallRuleName = "${local.Preamble}-console-firewall-rule"
 	ConsoleFirewallRuleDirection = "INGRESS"
 	ConsoleFirewallRulePriority = "1001"
@@ -7,8 +18,8 @@ locals {
 		"22"
 	]
 	ConsoleFirewallRuleNetworkTargetTags = [
-		"${local.AppName}-app",
-		"${local.AppName}-agent"
+		"${local.Tag}-app",
+		"${local.Tag}-agent"
 	]
 	ConsoleFirewallRuleSourceIpRanges = [
 		"35.190.247.0/24",
@@ -38,14 +49,14 @@ locals {
 	ControlFirewallRulePriority = "1003"
 	ControlFirewallRulePorts = "all"
 	ControlFirewallRuleSourceTags = [
-		"${local.AppName}-app",
-		"${local.AppName}-agent"
+		"${local.Tag}-app",
+		"${local.Tag}-agent"
 	]
 	ControlFirewallRuleTargetTags = [
-		"${local.AppName}-app",
-		"${local.AppName}-agent"
+		"${local.Tag}-app",
+		"${local.Tag}-agent"
 	]
-	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}"
+	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.Tag}-${local.Version}"
 	Private1VpcNetworkName = "${local.Preamble}-test-01-vpc-network"
 	Private1SubnetName = "${local.Preamble}-test-01-subnet"
 	Private1SubnetIpRange = "10.0.2.0/24"
@@ -58,10 +69,10 @@ locals {
 		"10.0.3.0/24"
 	]
 	Private1FirewallRuleSourceTags = [
-		"${local.AppName}-agent"
+		"${local.Tag}-agent"
 	]
 	Private1FirewallRuleTargetTags = [
-		"${local.AppName}-agent"
+		"${local.Tag}-agent"
 	]
 	Private2VpcNetworkName = "${local.Preamble}-test-02-vpc-network"
 	Private2FirewallRuleName = "${local.Preamble}-test-02-firewall-rule"
@@ -73,10 +84,10 @@ locals {
 		"10.0.3.0/24"
 	]
 	Private2FirewallRuleSourceTags = [
-		"${local.AppName}-agent"
+		"${local.Tag}-agent"
 	]
 	Private2FirewallRuleTargetTags = [
-		"${local.AppName}-agent"
+		"${local.Tag}-agent"
 	]
 	Private2SubnetName = "${local.Preamble}-test-02-subnet"
 	Private2SubnetIpRange = "10.0.3.0/24"
@@ -86,18 +97,15 @@ locals {
 	PublicFirewallRuleName = "${local.Preamble}-management-firewall-rule"
 	PublicFirewallRuleDirection = "INGRESS"
 	PublicFirewallRulePriority = "1000"
-	PublicFirewallRulePorts = [
-		"22",
-		"80",
-		"443",
-		"3389"
-	]
+	PublicFirewallRulePorts = var.PublicFirewallRulePorts
 	PublicFirewallRuleNetworkTargetTags = [
-		"${local.AppName}-app",
-		"${local.AppName}-agent"
+		"${local.Tag}-app",
+		"${local.Tag}-agent"
 	]
 	PublicFirewallRuleSourceIpRanges = var.PublicFirewallRuleSourceIpRanges
 	RegionName = var.RegionName
+	Tag = var.Tag
 	UserLoginTag = var.UserLoginTag
 	UserProjectTag = var.UserProjectTag
+	Version = var.Version
 }
