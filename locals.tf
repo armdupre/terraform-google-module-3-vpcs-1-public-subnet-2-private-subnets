@@ -56,11 +56,12 @@ locals {
 		"${local.Tag}-app",
 		"${local.Tag}-agent"
 	]
-	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.Tag}-${local.Version}"
-	Private1VpcNetworkName = "${local.Preamble}-test-01-vpc-network"
-	Private1SubnetName = "${local.Preamble}-test-01-subnet"
+	InstanceId = var.InstanceId
+	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.Tag}-${local.Version}-${local.InstanceId}"
+	Private1VpcNetworkName = "${local.Preamble}-private1-vpc-network"
+	Private1SubnetName = "${local.Preamble}-private1-subnet"
 	Private1SubnetIpRange = "10.0.2.0/24"
-	Private1FirewallRuleName = "${local.Preamble}-test-01-firewall-rule"
+	Private1FirewallRuleName = "${local.Preamble}-private1-firewall-rule"
 	Private1FirewallRuleDirection = "INGRESS"
 	Private1FirewallRulePriority = "1000"
 	Private1FirewallRulePorts = "all"
@@ -74,8 +75,8 @@ locals {
 	Private1FirewallRuleTargetTags = [
 		"${local.Tag}-agent"
 	]
-	Private2VpcNetworkName = "${local.Preamble}-test-02-vpc-network"
-	Private2FirewallRuleName = "${local.Preamble}-test-02-firewall-rule"
+	Private2VpcNetworkName = "${local.Preamble}-private2-vpc-network"
+	Private2FirewallRuleName = "${local.Preamble}-private2-firewall-rule"
 	Private2FirewallRuleDirection = "INGRESS"
 	Private2FirewallRulePriority = "1000"
 	Private2FirewallRulePorts = "all"
@@ -89,12 +90,12 @@ locals {
 	Private2FirewallRuleTargetTags = [
 		"${local.Tag}-agent"
 	]
-	Private2SubnetName = "${local.Preamble}-test-02-subnet"
+	Private2SubnetName = "${local.Preamble}-private2-subnet"
 	Private2SubnetIpRange = "10.0.3.0/24"
-	PublicVpcNetworkName = "${local.Preamble}-management-vpc-network"
-	PublicSubnetName = "${local.Preamble}-management-subnet"
+	PublicVpcNetworkName = "${local.Preamble}-public-vpc-network"
+	PublicSubnetName = "${local.Preamble}-public-subnet"
 	PublicSubnetIpRange = "10.0.10.0/24"
-	PublicFirewallRuleName = "${local.Preamble}-management-firewall-rule"
+	PublicFirewallRuleName = "${local.Preamble}-public-firewall-rule"
 	PublicFirewallRuleDirection = "INGRESS"
 	PublicFirewallRulePriority = "1000"
 	PublicFirewallRulePorts = var.PublicFirewallRulePorts
