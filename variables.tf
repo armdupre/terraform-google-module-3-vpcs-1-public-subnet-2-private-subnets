@@ -8,9 +8,7 @@ variable "PublicFirewallRulePorts" {
 	default = [
 		"22",
 		"80",
-		"443",
-		"3389",
-		"30422"
+		"443"
 	]
 	type = list(string)
 }
