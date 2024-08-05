@@ -46,7 +46,7 @@ locals {
 	]
 	InstanceId = var.InstanceId
 	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.Tag}-${local.Version}-${local.InstanceId}"
-	Private1VpcNetworkName = "${local.Preamble}-private1-vpc-network"
+	Private1VpcNetworkName = replace("${local.Preamble}-private1-vpc-network", "_", "-")
 	Private1SubnetName = "${local.Preamble}-private1-subnet"
 	Private1SubnetIpRange = "10.0.2.0/24"
 	Private1FirewallRuleName = "${local.Preamble}-private1-firewall-rule"
@@ -63,7 +63,7 @@ locals {
 	Private1FirewallRuleTargetTags = [
 		"${local.Tag}-agent"
 	]
-	Private2VpcNetworkName = "${local.Preamble}-private2-vpc-network"
+	Private2VpcNetworkName = replace("${local.Preamble}-private2-vpc-network", "_", "-")
 	Private2FirewallRuleName = "${local.Preamble}-private2-firewall-rule"
 	Private2FirewallRuleDirection = "INGRESS"
 	Private2FirewallRulePriority = "1000"
@@ -80,7 +80,7 @@ locals {
 	]
 	Private2SubnetName = "${local.Preamble}-private2-subnet"
 	Private2SubnetIpRange = "10.0.3.0/24"
-	PublicVpcNetworkName = "${local.Preamble}-public-vpc-network"
+	PublicVpcNetworkName = replace("${local.Preamble}-public-vpc-network", "_", "-")
 	PublicSubnetName = "${local.Preamble}-public-subnet"
 	PublicSubnetIpRange = "10.0.10.0/24"
 	PublicFirewallRuleName = "${local.Preamble}-public-firewall-rule"
