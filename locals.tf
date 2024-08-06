@@ -1,5 +1,5 @@
 locals {
-	ConsoleFirewallRuleName = replace("${local.Preamble}-console-firewall-rule", "_", "-")
+	ConsoleFirewallRuleName = "${local.Preamble}-console-firewall-rule"
 	ConsoleFirewallRuleDirection = "INGRESS"
 	ConsoleFirewallRulePriority = "1001"
 	ConsoleFirewallRulePorts = [
@@ -32,7 +32,7 @@ locals {
 		"216.58.192.0/19",
 		"216.239.32.0/19"
 	]
-	ControlFirewallRuleName = replace("${local.Preamble}-control-firewall-rule", "_", "-")
+	ControlFirewallRuleName = "${local.Preamble}-control-firewall-rule"
 	ControlFirewallRuleDirection = "INGRESS"
 	ControlFirewallRulePriority = "1003"
 	ControlFirewallRulePorts = "all"
@@ -45,11 +45,11 @@ locals {
 		"${local.Tag}-agent"
 	]
 	InstanceId = var.InstanceId
-	Preamble = "${local.UserLoginTag}-${local.UserProjectTag}-${local.Tag}-${local.Version}-${local.InstanceId}"
-	Private1VpcNetworkName = replace("${local.Preamble}-private1-vpc-network", "_", "-")
-	Private1SubnetName = replace("${local.Preamble}-private1-subnet", "_", "-")
+	Preamble = replace("${local.UserLoginTag}-${local.UserProjectTag}-${local.Tag}-${local.Version}-${local.InstanceId}", "_", "-")
+	Private1VpcNetworkName = "${local.Preamble}-private1-vpc-network"
+	Private1SubnetName = "${local.Preamble}-private1-subnet"
 	Private1SubnetIpRange = "10.0.2.0/24"
-	Private1FirewallRuleName = replace("${local.Preamble}-private1-firewall-rule", "_", "-")
+	Private1FirewallRuleName = "${local.Preamble}-private1-firewall-rule"
 	Private1FirewallRuleDirection = "INGRESS"
 	Private1FirewallRulePriority = "1000"
 	Private1FirewallRulePorts = "all"
@@ -63,8 +63,8 @@ locals {
 	Private1FirewallRuleTargetTags = [
 		"${local.Tag}-agent"
 	]
-	Private2VpcNetworkName = replace("${local.Preamble}-private2-vpc-network", "_", "-")
-	Private2FirewallRuleName = replace("${local.Preamble}-private2-firewall-rule", "_", "-")
+	Private2VpcNetworkName = "${local.Preamble}-private2-vpc-network"
+	Private2FirewallRuleName = "${local.Preamble}-private2-firewall-rule"
 	Private2FirewallRuleDirection = "INGRESS"
 	Private2FirewallRulePriority = "1000"
 	Private2FirewallRulePorts = "all"
@@ -78,12 +78,12 @@ locals {
 	Private2FirewallRuleTargetTags = [
 		"${local.Tag}-agent"
 	]
-	Private2SubnetName = replace("${local.Preamble}-private2-subnet", "_", "-")
+	Private2SubnetName = "${local.Preamble}-private2-subnet"
 	Private2SubnetIpRange = "10.0.3.0/24"
-	PublicVpcNetworkName = replace("${local.Preamble}-public-vpc-network", "_", "-")
-	PublicSubnetName = replace("${local.Preamble}-public-subnet", "_", "-")
+	PublicVpcNetworkName = "${local.Preamble}-public-vpc-network"
+	PublicSubnetName = "${local.Preamble}-public-subnet"
 	PublicSubnetIpRange = "10.0.10.0/24"
-	PublicFirewallRuleName = replace("${local.Preamble}-public-firewall-rule", "_", "-")
+	PublicFirewallRuleName = "${local.Preamble}-public-firewall-rule"
 	PublicFirewallRuleDirection = "INGRESS"
 	PublicFirewallRulePriority = "1000"
 	PublicFirewallRulePorts = var.PublicFirewallRulePorts
