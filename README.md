@@ -9,7 +9,7 @@ This module creates a topology with three virtual private clouds, one having a s
 ## Usage
 ```tf
 module "Vpc" {
-	source = "armdupre/module-3-vpcs-1-public-subnet-2-private-subnets/google"
+	source = "git::https://github.com/armdupre/terraform-google-module-3-vpcs-1-public-subnet-2-private-subnets.git"
 	PublicFirewallRuleSourceIpRanges = [ "1.1.1.1/32" ]
 }
 ```
