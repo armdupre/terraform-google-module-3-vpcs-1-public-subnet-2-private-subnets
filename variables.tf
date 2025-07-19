@@ -10,6 +10,7 @@ variable "Private1VpcNetworkMtu" {
 	type = number
 	validation {
 		condition = contains([1460, 1500, 8896], var.Private1VpcNetworkMtu)
+		error_message = "Private1VpcNetworkMtu must be one of (1460 | 1500 | 8896) values."
 	}
 }
 
@@ -19,6 +20,7 @@ variable "Private2VpcNetworkMtu" {
 	type = number
 	validation {
 		condition = contains([1460, 1500, 8896], var.Private2VpcNetworkMtu)
+		error_message = "Private2VpcNetworkMtu must be one of (1460 | 1500 | 8896) values."
 	}
 }
 
@@ -44,6 +46,7 @@ variable "PublicVpcNetworkMtu" {
 	type = number
 	validation {
 		condition = contains([1460, 1500, 8896], var.PublicVpcNetworkMtu)
+		error_message = "PublicVpcNetworkMtu must be one of (1460 | 1500 | 8896) values."
 	}
 }
 
