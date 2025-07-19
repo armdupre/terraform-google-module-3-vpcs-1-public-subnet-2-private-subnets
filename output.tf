@@ -7,8 +7,9 @@ output "Private1Subnet" {
 
 output "Private1VpcNetwork" {
 	value = {
-		"name" : google_compute_network.Private1VpcNetwork.name
 		"id" : google_compute_network.Private1VpcNetwork.id
+		"mtu" : google_compute_network.Private1VpcNetwork.mtu
+		"name" : google_compute_network.Private1VpcNetwork.name
 		"self_link" : google_compute_network.Private1VpcNetwork.self_link
 	}
 }
@@ -22,8 +23,9 @@ output "Private2Subnet" {
 
 output "Private2VpcNetwork" {
 	value = {
-		"name" : google_compute_network.Private2VpcNetwork.name
 		"id" : google_compute_network.Private2VpcNetwork.id
+		"mtu" : google_compute_network.Private2VpcNetwork.mtu
+		"name" : google_compute_network.Private2VpcNetwork.name
 		"self_link" : google_compute_network.Private2VpcNetwork.self_link
 	}
 }
@@ -37,6 +39,8 @@ output "PublicSubnet" {
 
 output "PublicVpcNetwork" {
 	value = {
+		"id" : google_compute_network.PrivateVpcNetwork.id
+		"mtu" : google_compute_network.PublicVpcNetwork.mtu
 		"name" : google_compute_network.PublicVpcNetwork.name
 		"self_link" : google_compute_network.PublicVpcNetwork.self_link
 	}
