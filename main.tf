@@ -1,6 +1,7 @@
 resource "google_compute_network" "PublicVpcNetwork" {
 	name = local.PublicVpcNetworkName
 	auto_create_subnetworks = "false"
+	mtu = local.PublicVpcNetworkMtu
 	routing_mode = "REGIONAL"
 }
 
@@ -14,6 +15,7 @@ resource "google_compute_subnetwork" "PublicSubnet" {
 resource "google_compute_network" "Private1VpcNetwork" {
 	name = local.Private1VpcNetworkName
 	auto_create_subnetworks = "false"
+	mtu = local.Private1VpcNetworkMtu
 	routing_mode = "REGIONAL"
 }
 
@@ -27,6 +29,7 @@ resource "google_compute_subnetwork" "Private1Subnet" {
 resource "google_compute_network" "Private2VpcNetwork" {
 	name = local.Private2VpcNetworkName
 	auto_create_subnetworks = "false"
+	mtu = local.Private2VpcNetworkMtu
 	routing_mode = "REGIONAL"
 }
 
