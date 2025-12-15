@@ -54,31 +54,18 @@ resource "google_compute_firewall" "PublicFirewallRule" {
 	target_tags = local.PublicFirewallRuleNetworkTargetTags
 }
 
-resource "google_compute_firewall" "ConsoleFirewallRule" {
-	name = local.ConsoleFirewallRuleName
+resource "google_compute_firewall" "IapFirewallRule" {
+	name = local.IapFirewallRuleName
 	allow {
 		protocol = "tcp"
-		ports = local.ConsoleFirewallRulePorts
+		ports = local.IapFirewallRulePorts
 	}
-	direction = local.ConsoleFirewallRuleDirection
+	direction = local.IapFirewallRuleDirection
 	disabled = "false"
 	network = google_compute_network.PublicVpcNetwork.self_link
-	priority = local.ConsoleFirewallRulePriority
-	source_ranges = local.ConsoleFirewallRuleSourceIpRanges
-	target_tags = local.ConsoleFirewallRuleNetworkTargetTags
-}
-
-resource "google_compute_firewall" "ControlFirewallRule" {
-	name = local.ControlFirewallRuleName
-	allow {
-		protocol = local.ControlFirewallRulePorts
-	}
-	direction = local.ControlFirewallRuleDirection
-	disabled = "false"
-	network = google_compute_network.PublicVpcNetwork.self_link
-	priority = local.ControlFirewallRulePriority
-	source_tags = local.ControlFirewallRuleSourceTags
-	target_tags = local.ControlFirewallRuleTargetTags
+	priority = local.IapFirewallRulePriority
+	source_ranges = local.IapFirewallRuleSourceIpRanges
+	target_tags = local.IapFirewallRuleNetworkTargetTags
 }
 
 resource "google_compute_firewall" "Private1FirewallRule" {
